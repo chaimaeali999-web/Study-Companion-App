@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study companion Dashboard</title>
+    <link rel="stylesheet" href="index.css">
+</head> 
+<body>
+    <header>
+    <h1 id="logo"><img src="assets/logo.webp" alt="studying logo"></h1>
+    <div id="buttons">
+    <button class="light">☀️</button>
+    <button class="dark">🌙</button>
+    <button class="lightc">🎮</button>
+    <button class="darkc">🧊</button>
+    </div></header>
+    <hr>
+    <div class="countainer">
+    <iframe src="to do list/ToDoList.html" frameborder="0" id="toDo" class="card"></iframe>
+    <div id="pomodoro" class="card">
+        <h1>25:00</h1>
+        <button>start timer</button>
+    </div>
+    <div id="notes" class="card">
+    <input type="text">
+    <button>add note</button>
+    </div>
+    <div id="quotes" class="card"></div>
+    <div id="focus" class="card">
+        <h1>🎯 Focus Challenge</h1>
+        <p>Challenge</p>
+        <button>new Challenge</button>
+    </div>
+</div>
+
+
+    <script src="main.js"></script>
+</body>
+</html>

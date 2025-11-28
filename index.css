@@ -1,0 +1,46 @@
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+#logo img {
+    width: 70px;
+    border-radius: 40px;
+}
+
+.card{
+    width: 90%;
+    display: block;
+    border: 2px black solid;
+    margin: 0 auto;
+    height: 500px;
+    margin-left: 5px;
+}
+.countainer{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 50px;
+
+}
+#buttons button{
+    background: none;
+    border: none;
+}
+#buttons button:hover{
+    cursor: pointer;
+}
+header{
+    display: flex;
+    align-items: center;
+}
+#buttons{
+    margin-left: auto;
+}
+hr{
+    margin-top: -20px;
+    margin-bottom: 20px;
+}
+#pomodoro, #notes, #focus{
+    text-align: center;
+}

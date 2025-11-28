@@ -1,0 +1,106 @@
+body {
+  display: flex;
+  justify-content: center; 
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+}
+#TITLE{
+    flex-direction: column;
+}
+.container {
+    width: 600px;
+    height: 600px;
+    border-radius: 10px;
+    margin-top: 100px;
+    padding-left: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.container h1 {
+    text-align: center;
+}
+
+.Bcont {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 5px;
+}
+.Bcont #SA {
+    background: linear-gradient(to right, blue, rgb(0, 179, 255));
+    
+}
+.Bcont #UA {
+    background: linear-gradient(to right, blue, rgb(0, 179, 255));
+}
+.Bcont #RS {
+    background: linear-gradient(to right, red, rgb(255, 175, 71));
+    color: #222;
+}
+.Bcont button {
+    width: 170px;
+    height: 50px;
+    font-size: 15px;
+    border-radius: 8px;
+    color: white;
+}
+.Bcont button:hover {
+    cursor: pointer;
+}
+#NLI {
+    width: 250px;
+    height: 35px;
+    border-radius: 5px;
+}
+.container label {
+    font-size: 24px;
+}
+#Add {
+    width: 100px;
+    height: 39.5px;
+    font-size: 18px;
+    border-radius: 5px;
+}
+.Ccont {
+  width: 95%;
+  margin-top: 7px;
+  min-height: 350px;
+  border-radius: 15px;
+  text-align: center;
+  background-color: white;
+}
+.Ccont label {
+    display: block;
+}
+.item-row {
+  display: flex;
+  align-items: center; 
+  margin-bottom: 8px;  
+}
+#counter {
+    display: flex;
+    justify-content: center;
+    margin-top: -30px;
+
+}
+.container h1,
+.container h2 {
+    display: block;
+    text-align: center;
+    margin: 0;        
+    padding: 0;       
+}
+#counter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.count-row {
+    display: flex;
+    flex-direction: row;
+    gap: 5px; 
+    justify-content: center;
+    align-items: center;
+}
