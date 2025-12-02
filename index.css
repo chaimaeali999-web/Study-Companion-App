@@ -1,46 +1,171 @@
-body{
+/* ===== General ===== */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+body {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: sans-serif;
     overflow-x: hidden;
-}
-#logo img {
-    width: 70px;
-    border-radius: 40px;
+    background-color: #f8f8f8;
 }
 
-.card{
-    width: 90%;
-    display: block;
-    border: 2px black solid;
-    margin: 0 auto;
-    height: 500px;
-    margin-left: 5px;
-}
-.countainer{
-    display: grid;
-    grid-template-columns: 50% 50%;
-    gap: 50px;
-
-}
-#buttons button{
-    background: none;
-    border: none;
-}
-#buttons button:hover{
-    cursor: pointer;
-}
-header{
+/* ===== Header ===== */
+header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    width: 95%;
+    max-width: 1200px;
+    margin: 20px 0 10px 0;
 }
-#buttons{
-    margin-left: auto;
+
+#logo img {
+    width: 70px;
+    border-radius: 50%;
 }
-hr{
-    margin-top: -20px;
-    margin-bottom: 20px;
+
+#buttons button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    margin-left: 10px;
+    cursor: pointer;
 }
-#pomodoro, #notes, #focus{
+
+/* ===== hr ===== */
+hr {
+    width: 95%;
+    margin: 20px 0;
+    border: 1px solid #ccc;
+}
+
+/* ===== Grid ===== */
+.main-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    width: 95%;
+    max-width: 1200px;
+    margin-bottom: 50px;
+}
+
+/* ===== Cards ===== */
+.card {
+    background-color: white;
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 700px;
+    min-height: 500px;
+    overflow-y: auto;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* ===== ToDo Container ===== */
+.card .container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ===== Counter ===== */
+#counter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.count-row {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===== Buttons ===== */
+.Bcont {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.Bcont button {
+    width: 150px;
+    height: 45px;
+    font-size: 15px;
+    border-radius: 8px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+#SA, #UA {
+    background: linear-gradient(to right, #007bff, #00b3ff);
+    color: white;
+}
+
+#RS {
+    background: linear-gradient(to right, #ff4b2b, #ffaf47);
+    color: #222;
+}
+
+/* ===== Input Fields ===== */
+#NLI {
+    width: 250px;
+    height: 35px;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+#Add {
+    width: 100px;
+    height: 38px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+/* ===== Task Container ===== */
+.Ccont {
+    width: 100%;
+    min-height: 200px;
+    border-radius: 10px;
+    margin-top: 10px;
     text-align: center;
 }
+
+/* ===== Mode Styles ===== */
+.lightMode { background-color: white; color: black; border-color: black; }
+.darkMode { background-color: black; color: white; border-color: white; }
+.gamerMode { background-color: #777; color: #57ff41; border-color: #57ff41; }
+.chillMode { background-color: #b9f7ff; color: black; border-color: black; }
+
+/* ===== Cards Specific Elements ===== */
+#pomodoro, #notes, #quotes, #focus {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#notes input {
+    width: 80%;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* ===== Notes ===== */

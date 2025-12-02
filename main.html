@@ -3,38 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Study companion Dashboard</title>
+    <title>Study Companion Dashboard</title>
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="todoStyle.css">
 </head> 
 <body>
     <header>
-    <h1 id="logo"><img src="assets/logo.webp" alt="studying logo"></h1>
-    <div id="buttons">
-    <button class="light">☀️</button>
-    <button class="dark">🌙</button>
-    <button class="lightc">🎮</button>
-    <button class="darkc">🧊</button>
-    </div></header>
+        <h1 id="logo"><img src="assets/logo.webp" alt="studying logo"></h1>
+        <div id="buttons">
+            <button class="light">☀️</button>
+            <button class="dark">🌙</button>
+            <button class="lightc">🎮</button>
+            <button class="darkc">🧊</button>
+        </div>
+    </header>
     <hr>
-    <div class="countainer">
-    <iframe src="to do list/ToDoList.html" frameborder="0" id="toDo" class="card"></iframe>
-    <div id="pomodoro" class="card">
-        <h1>25:00</h1>
-        <button>start timer</button>
-    </div>
-    <div id="notes" class="card">
-    <input type="text">
-    <button>add note</button>
-    </div>
-    <div id="quotes" class="card"></div>
-    <div id="focus" class="card">
-        <h1>🎯 Focus Challenge</h1>
-        <p>Challenge</p>
-        <button>new Challenge</button>
-    </div>
-</div>
 
+    <div class="main-container">
+        <div id="todo" class="card">
+            <div class="container">
+                <div id="counter">
+                    <h2 id="TITLE">To Do List</h2>
+                    <div class="count-row">
+                        <h1 id="CCC">0</h1>
+                        <h1>/</h1>
+                        <h1 id="maxC">0</h1>
+                    </div>
+                </div>
 
-    <script src="main.js"></script>
+                <div class="Bcont">
+                    <button id="SA">Select All</button>
+                    <button id="UA">Unselect All</button>
+                    <button id="RS">Remove Selected</button>
+                </div>
+
+                <form action="">
+                    <label for="NLI">New Task:</label>
+                    <input type="text" id="NLI" placeholder="Task.">
+                    <button type="submit" id="Add">Add</button>
+                </form>
+
+                <div class="Ccont" id="Ccont"></div>
+            </div>
+        </div>
+
+        <div id="pomodoro" class="card">
+            <div id="timer"><h1>25:00</h1></div>
+            <div class="timer_buttons">
+                <button id="startBtn">Start</button>
+                <button id="pauseBtn">Pause</button>
+                <button id="resetBtn">Reset</button>
+            </div>
+        </div>
+
+        <div id="notes" class="card">
+            <input type="text" placeholder="Write a note" id="noteInput">
+            <button id="noteADD">Add Note</button>
+            <button id="noteOPEN">Open Notes</button>
+            <div class="modal" id="modal">
+                <div class="Mheader">
+                    <div class="title">Your notes</div><button class="closebtn">&times;</button>
+                </div>
+                <div class="Mbody">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste officia error quas id laboriosam aliquam vel voluptate sequi omnis dolore, eum, repellat sunt debitis nam. Dolore consectetur nemo ab nesciunt? At nesciunt aut, iste maiores veniam repudiandae. A recusandae amet doloremque voluptatum libero. Placeat, alias! Incidunt expedita voluptas illo quasi sequi alias assumenda, labore praesentium ex, cum beatae, ad deserunt facere fuga consequuntur. Voluptates quam illum provident ex dolorem assumenda mollitia sequi veritatis dicta, enim voluptas fugit, sunt molestiae accusantium unde, explicabo saepe? Unde sed ab optio dolorum quibusdam et deleniti adipisci, quia fugiat quis nostrum tenetur voluptatem aut molestias.
+                </div>
+            </div>
+            <div id="overlay"></div>
+        </div>
+
+        <div id="quotes" class="card"></div>
+
+        <div id="focus" class="card">
+            <h1>🎯 Focus Challenge</h1>
+            <p>Challenge</p>
+            <button>New Challenge</button>
+        </div>
+    </div>
+
+    <script src="todoScript.js"></script>
+    <script src="timer.js"></script>
+    <script src="styleMode.js"></script>
+    <script src="notes.js"></script>
 </body>
 </html>
