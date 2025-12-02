@@ -1,0 +1,716 @@
+<!-- FULL IMPROVED PROJECT: HTML + CSS + JAVASCRIPT -->
+<!-- Modern UI • Clean Code • Responsive • Animations • LocalStorage -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Study Companion Dashboard</title>
+
+    <!-- ======== GLOBAL STYLE ======== -->
+    <style>
+        :root {
+            --bg: #f4f6fa;
+            --card-bg: #ffffff;
+            --text: #1b1b1d;
+            --primary: #4a6cf7;
+            --accent: #6c5ce7;
+            --danger: #e74c3c;
+            --radius: 16px;
+            --transition: 0.25s ease;
+        }
+        body.dark-mode {
+            --bg: #0e0e11;
+            --card-bg: #1a1a1e;
+            --text: #f2f2f2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            padding: 25px;
+            transition: var(--transition);
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        #logo img {
+            width: 70px;
+            border-radius: 50px;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        #buttons button {
+            padding: 10px 14px;
+            border-radius: var(--radius);
+            border: none;
+            background: var(--card-bg);
+            transition: var(--transition);
+            margin-left: 8px;
+        }
+        #buttons button:hover {
+            transform: scale(1.12);
+        }
+
+        /* MAIN GRID */
+        .main-container {
+            display: grid;
+            gap: 22px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 22px;
+            border-radius: var(--radius);
+            box-shadow: 0 4px 25px rgba(0,0,0,0.10);
+            transition: var(--transition);
+            max-height: 400px;
+            overflow-y: auto;
+            min-height: 300px;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+        }
+
+        /* INPUT */
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: var(--radius);
+            background: transparent;
+            color: var(--text);
+        }
+
+        /* --- TO DO LIST --- */
+        .todo-actions { display: flex; gap: 10px; margin-bottom: 14px; }
+        .todo-actions button {
+            flex: 1;
+            padding: 10px;
+            border-radius: var(--radius);
+            border: none;
+        }
+        #Add {
+            margin-top: 12px;
+            width: 100%;
+            padding: 12px;
+            background: var(--primary);
+            border: none;
+            color: white;
+            border-radius: var(--radius);
+        }
+        #Ccont div {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: rgba(0,0,0,0.05);
+            border-radius: var(--radius);
+            margin-top: 8px;
+            justify-content: space-between;
+        }
+
+        /* --- POMODORO --- */
+        #timer h1 {
+            text-align: center;
+            font-size: 3rem;
+        }
+        .timer_buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 14px;
+        }
+        .timer_buttons button {
+            flex: 1;
+            padding: 12px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+        }
+
+        /* --- NOTES MODAL --- */
+        .modal {
+            position: fixed;
+            top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.8);
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: var(--radius);
+            box-shadow: 0 4px 40px rgba(0,0,0,0.3);
+            opacity: 0;
+            pointer-events: none;
+            width: 400px;
+            transition: var(--transition);
+            min-height: 400px;
+        }
+        .modal.active {
+            opacity: 1;
+            pointer-events: all;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        #overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+        #overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* --- FOCUS CHALLENGE --- */
+        #focus button {
+            padding: 12px;
+            width: 100%;
+            border-radius: var(--radius);
+            border: none;
+            background: var(--primary);
+            color: white;
+        }
+        .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    border: 1px black solid;
+    overflow-y: auto;
+    border-radius: 10px;
+    z-index: 100;
+    background-color: white;
+    width: 500px;
+    max-width: 80%;
+    max-height: 70vh;
+}
+.modal.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+.Mheader {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+
+.Mheader .title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.Mheader button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.Mbody {
+    padding: 10px 15px;
+}
+
+#overlay {
+    position: fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+    pointer-events: none;
+}
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.ONENote {
+    display: flex;
+    align-items: flex-start;      /* allow vertical expansion */
+    justify-content: space-between;
+    border: 1px solid #ccc;
+    background-color: #fefefe;
+    margin: 5px 0;
+    border-radius: 12px;
+    padding: 8px 12px;
+    min-height: 40px;
+    /* remove max-height or set very high */
+    max-height: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    word-break: break-word;
+}
+
+.ONENote p {
+    margin: 0;
+    flex: 1;
+    font-size: 14px;
+    color: #1b1b1d;
+    white-space: pre-wrap;       /* preserves line breaks */
+    word-wrap: break-word;       /* ensures long words wrap */
+}
+
+
+.ONENote button {
+    margin-left: 10px;
+    cursor: pointer;
+    outline: none;
+    background-color: #e74c3c;   /* red for delete */
+    color: white;
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s
+}
+/* ======== GLOBAL BUTTON STYLE ======== */
+button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: var(--radius);
+    padding: 10px 14px;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ----- Header buttons ----- */
+#buttons button {
+    background: var(--card-bg);
+    color: var(--text);
+    margin-left: 8px;
+    font-size: 18px;
+}
+#buttons button:hover {
+    background: var(--primary);
+    color: white;
+    transform: scale(1.12);
+}
+
+/* ----- To-Do actions ----- */
+.todo-actions button {
+    background: var(--primary);
+    color: white;
+    font-size: 14px;
+    flex: 1;
+}
+.todo-actions button:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+}
+#Add {
+    background: var(--accent);
+    color: white;
+    font-size: 15px;
+    width: 100%;
+}
+#Add:hover {
+    background: var(--primary);
+    transform: translateY(-2px);
+}
+
+/* ----- Pomodoro buttons ----- */
+.timer_buttons button {
+    background: var(--primary);
+    color: white;
+    font-size: 14px;
+}
+.timer_buttons button:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* ----- Notes modal delete button ----- */
+.ONENote button {
+    background-color: var(--danger);
+    color: white;
+}
+.ONENote button:hover {
+    background-color: darkred;
+    transform: scale(1.1);
+}
+
+/* ----- Modal / Focus / Add Note buttons ----- */
+#noteADD, #newChallenge, .modal button {
+    background: var(--primary);
+    color: white;
+    font-size: 14px;
+}
+#noteADD:hover, #newChallenge:hover, .modal button:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+}
+/* ======== GLOBAL MARGINS/PADDING ======== */
+
+/* Space between main cards */
+.main-container .card {
+    margin-bottom: 20px;
+}
+
+/* Header spacing */
+header {
+    margin-bottom: 30px;
+}
+
+/* To-Do List spacing */
+.todo-actions {
+    margin-bottom: 15px;
+}
+#Add {
+    margin-top: 10px;
+}
+
+/* Input spacing */
+input[type="text"] {
+    margin-bottom: 10px;
+}
+
+/* Pomodoro spacing */
+.timer_buttons {
+    margin-top: 15px;
+}
+
+/* Notes card spacing */
+#notes input[type="text"] {
+    margin-bottom: 10px;
+}
+#notes button {
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+/* Motivation card spacing */
+#quotes {
+    padding-bottom: 15px;
+}
+
+/* Focus Challenge spacing */
+#focus p {
+    margin-bottom: 10px;
+}
+#focus button {
+    margin-top: 5px;
+}
+
+/* Modal content spacing */
+.Mbody .ONENote {
+    margin-bottom: 8px;
+}
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1 id="logo"><img src="assets/logo.webp" /></h1>
+        <div id="buttons">
+            <button id="light">☀️</button>
+            <button id="dark">🌙</button>
+        </div>
+    </header>
+
+    <div class="main-container">
+
+        <!-- ========== TO DO LIST ========== -->
+        <div class="card">
+            <h2>To-Do List</h2>
+            <div class="todo-actions">
+                <button id="SA">Select All</button>
+                <button id="UA">Unselect All</button>
+                <button id="RS">Remove</button>
+            </div>
+            <form action="#">
+            <input type="text" id="NLI" placeholder="Add new task..." />
+            <button id="Add">Add</button>
+            </form>
+            <div id="Ccont"></div>
+        </div>
+
+        <!-- ========== POMODORO ========== -->
+        <div class="card">
+            <div id="timer"><h1 id="time">25:00</h1></div>
+            <div class="timer_buttons">
+                <button id="startBtn">Start</button>
+                <button id="pauseBtn">Pause</button>
+                <button id="resetBtn">Reset</button>
+            </div>
+        </div>
+
+        <!-- ========== NOTES ========== -->
+        <div id="notes" class="card">
+            <input type="text" placeholder="Write a note" id="noteInput">
+            <button id="noteADD">Add Note</button>
+            <button data-modal-target="#modal">Open Notes</button>
+        </div>
+        <!-- ========== QUOTES / MOTIVATION ========== -->
+        <div class="card" id="quotes">
+            <h2>Motivation</h2>
+            <p id="quoteText">Loading...</p>
+        </div>
+
+        <!-- ========== FOCUS CHALLENGE ========== -->
+        <div class="card" id="focus">
+            <h2>🎯 Focus Challenge</h2>
+            <p id="challengeText">Click to start</p>
+            <button id="newChallenge">New Challenge</button>
+        </div>
+
+    </div>
+    <div class="modal" id="modal">
+                <div class="Mheader">
+                    <div class="title">Your notes</div><button data-close-button class="closebtn">&times;</button>
+                </div>
+                <div class="Mbody">
+                
+                </div>
+            </div>
+            <div id="overlay"></div>
+
+
+    <!-- ================== JAVASCRIPT ================== -->
+    <script>
+        /* ------------------- DARK MODE ------------------- */
+        const darkBtn = document.getElementById("dark");
+        const lightBtn = document.getElementById("light");
+        darkBtn.onclick = () => document.body.classList.add("dark-mode");
+        lightBtn.onclick = () => document.body.classList.remove("dark-mode");
+
+
+        /* ------------------- TO-DO LIST ------------------- */
+        const NLI = document.getElementById("NLI");
+        const Add = document.getElementById("Add");
+        const Ccont = document.getElementById("Ccont");
+
+        function saveTasks() {
+            localStorage.setItem("tasks", Ccont.innerHTML);
+        }
+
+        function loadTasks() {
+            Ccont.innerHTML = localStorage.getItem("tasks") || "";
+        }
+        loadTasks();
+
+        Add.onclick = (e) => {
+            if (NLI.value.trim() === "") return;
+
+            const div = document.createElement("div");
+            div.innerHTML = `<input type='checkbox'> <span>${NLI.value}</span>`;
+
+            Ccont.appendChild(div);
+            NLI.value = "";
+            saveTasks();
+        };
+
+        document.getElementById("SA").onclick = () => {
+            Ccont.querySelectorAll("input").forEach(c => c.checked = true);
+        };
+        document.getElementById("UA").onclick = () => {
+            Ccont.querySelectorAll("input").forEach(c => c.checked = false);
+        };
+        document.getElementById("RS").onclick = () => {
+            Ccont.querySelectorAll("input:checked").forEach(x => x.parentElement.remove());
+            saveTasks();
+        };
+
+        Ccont.addEventListener("change", saveTasks);
+
+
+        /* ------------------- POMODORO ------------------- */
+        let timeLeft = 1500; //25 mins
+        let interval;
+        const timeText = document.getElementById("time"); 
+
+        function updateTimer() {
+            let m = Math.floor(timeLeft/60);
+            let s = timeLeft % 60;
+            timeText.textContent = `${m}:${s.toString().padStart(2,"0")}`;
+        }
+
+        document.getElementById("startBtn").onclick = () => {
+            clearInterval(interval);
+            interval = setInterval(() => {
+                if (timeLeft > 0) {
+                    timeLeft--;
+                    updateTimer();
+                }
+            }, 1000);
+        };
+
+        document.getElementById("pauseBtn").onclick = () => clearInterval(interval);
+
+        document.getElementById("resetBtn").onclick = () => {
+            timeLeft = 1500;
+            updateTimer();
+            clearInterval(interval);
+        };
+
+
+        /* ------------------- NOTES ------------------- */
+        const openModalButtons = document.querySelectorAll("[data-modal-target]");
+const closeModalButtons = document.querySelectorAll("[data-close-button]");
+const overlay = document.getElementById("overlay");
+const addNote = document.getElementById("noteADD");
+const noteInput = document.getElementById("noteInput");
+const Mbody = document.querySelector(".Mbody");
+
+
+openModalButtons.forEach(button => {
+    button.addEventListener("click", ()=>{
+        const modal = document.querySelector(button.dataset.modalTarget)
+        openModal(modal)
+    })
+})
+
+closeModalButtons.forEach(button => {
+    button.addEventListener("click", ()=>{
+        const modal = button.closest('.modal')
+        closeModal(modal)
+    })
+})
+
+function openModal(modal) {
+    if(modal == null) return
+    modal.classList.add('active');
+    overlay.classList.add('active')
+}
+
+function closeModal(modal) {
+    if(modal == null) return
+    modal.classList.remove('active');
+    overlay.classList.remove('active')
+}
+let notesTable = JSON.parse(localStorage.getItem("notes")) || [];
+loadNotes();
+addNote.addEventListener("click",()=>{
+    let tInput = noteInput.value.trim();
+    if(tInput === ""){
+        alert("please write a note before adding it");
+    }else{
+        notesTable.push(noteInput.value);
+        noteInput.value = "";
+        localStorage.setItem("notes", JSON.stringify(notesTable));
+        loadNotes();
+    }
+    })
+
+
+
+    function loadNotes(){
+        Mbody.innerHTML = "";
+        notesTable.forEach((n, index) => {
+            let newNote = document.createElement("div");
+            newNote.classList.add("ONENote");
+            newNote.innerHTML = `<p>${n}</p><button class="removeBTNnotes">&times;</button>`;
+            const removeBtn = newNote.querySelector(".removeBTNnotes");
+        removeBtn.addEventListener("click", () => {
+            // Remove from array
+            notesTable.splice(index, 1);
+
+            // Update localStorage
+            localStorage.setItem("notes", JSON.stringify(notesTable));
+
+            // Re-render notes
+            loadNotes();
+        });
+            Mbody.appendChild(newNote);
+        })
+    }
+
+
+    /* ------------------- QUOTES ------------------- */
+        const quotes = [
+  "Small steps every day.",
+  "Discipline beats motivation.",
+  "Focus on progress, not perfection.",
+  "One hour a day = mastery.",
+  "Do it for your future self.",
+  "Consistency is a cheat code.",
+  "You won't always be motivated. Be disciplined.",
+  "Future you is watching.",
+  "Excuses change nothing. Actions change everything.",
+  "You're closer than you think.",
+  "Hard choices, easy life. Easy choices, hard life.",
+  "Be obsessed with improvement.",
+  "Fall in love with the grind.",
+  "Comfort kills dreams.",
+  "Be so good they can't ignore you.",
+  "Small wins compound.",
+  "Start now. Not later.",
+  "If it's important, you'll find a way.",
+  "Don't negotiate with weakness.",
+  "Every day is a chance to get better.",
+  "Average is crowded. Be different.",
+  "Winners are made in silence.",
+  "You're not tired, you're untrained.",
+  "Pain is temporary. Pride is forever.",
+  "Do something today your future self will thank you for."
+];
+
+        document.getElementById("quoteText").textContent =
+            quotes[Math.floor(Math.random()*quotes.length)];
+
+
+        /* ------------------- FOCUS CHALLENGE ------------------- */
+        const challengeText = document.getElementById("challengeText");
+        const challenges = [
+    "Study 15 minutes without touching your phone.",
+    "Finish 1 task from your to-do list.",
+    "Read 5 pages of a book.",
+    "Clean your desk in 2 minutes.",
+    "Do 10 pushups to reset your brain.",
+    "Write 3 things you're grateful for.",
+    "Drink a full glass of water.",
+    "Stretch for 1 minute.",
+    "Organize one folder on your PC.",
+    "Delete 5 useless files.",
+    "Review your notes for 5 minutes.",
+    "Write 2 sentences of journaling.",
+    "Take 10 deep breaths.",
+    "Walk for 3 minutes.",
+    "Uninstall 1 useless app.",
+    "Send a text to someone you appreciate.",
+    "Do a quick posture check.",
+    "Close all unused tabs.",
+    "Do 20 seconds of plank.",
+    "Plan tomorrow in 60 seconds.",
+];
+
+        document.getElementById("newChallenge").onclick = () => {
+            challengeText.textContent =
+                challenges[Math.floor(Math.random()*challenges.length)];
+        };
+
+    </script>
+</body>
+</html>
