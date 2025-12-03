@@ -3,8 +3,12 @@ Tâches à réaliser
 Fichier principal
 •	Créer le fichier TODO.md
  Développement
-•	Ahmad : Développement de la partie JavaScript
-•	Zakaria : Création et stylisation en CSS
-•	Wadie : Structure du site en HTML
+##
+•	Ahmad : Développer la partie du JavaScript
+##
+•	Zakaria : Créer le fichier du CSS
+##
+•	Wadie : Structurer le fichier du HTML
  Intégration
-•	Chaymae : Assembler toutes les parties (HTML, CSS, JS) pour obtenir le projet final
+•	Chaymae : Assembler toutes les parties (HTML, CSS, JS) pour obtenir le projet final.
+
