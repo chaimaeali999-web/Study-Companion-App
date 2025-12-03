@@ -10,5 +10,6 @@ Fichier principal
 ##
 •	Wadie : Structurer le fichier du HTML
  Intégration
+ ##
 •	Chaymae : Assembler toutes les parties (HTML, CSS, JS) pour obtenir le projet final.
 
