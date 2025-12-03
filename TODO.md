@@ -1,11 +1,13 @@
-##
-Plan de travail – Équipe
-##
+## Plan de travail – Équipe
 
-Tâches à réaliser
-##
-Fichier principal
-•	Créer le fichier TODO.md
+## Tâches à réaliser
+
+
+## Fichier principal
+
+ ##
+ •	Créer le fichier TODO.md
+ ##
  Développement
 ##
 •	Ahmad : Développer la partie du JavaScript
